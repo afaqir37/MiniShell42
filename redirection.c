@@ -12,7 +12,7 @@ int main(void){
 	close(fd);
 
 	execve(argv[0], &argv[0], envp);
-	fprintf(stderr, "Oops!\n"); // this line will be excecuted in case
+	fprintf(stderr, "Oops!\n"); // this line will be executed in case
 				    // execve() function fails
 	return -1;
 }
