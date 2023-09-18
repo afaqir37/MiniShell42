@@ -41,5 +41,10 @@ int main(void) {
 	char *input = readline("Input Here: ");
 	t_token *result = _lexer(input);
 
+	printf("the user input is: %s\n", input);
+	
+	t_token *result = lexer(input);
+
+
 	return 0;
 }
