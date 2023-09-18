@@ -31,13 +31,9 @@ typedef struct s_token {
 int main(void) {
 
 	char *input = readline("Input Here: ");
-<<<<<<< HEAD
 	printf("the user input is: %s\n", input);
-
 	
-=======
 	t_token *result = lexer(input);
 
->>>>>>> a364598df49e58bf57bf1d6ee5b062f0233418b5
 	return 0;
 }
