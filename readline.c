@@ -14,24 +14,32 @@ typedef struct s_token {
 	struct s_token *next;
 } t_token;
 
-// give me an example of a command passed to lexer
-// "ls -l | grep -i main.c"
-// what should this command be after being passed to lexer
-// "ls" "-l" "|" "grep" "-i" "main.c"
-// what should the lexer return
-// a linked list of tokens
-// what should each token contain
-// the value of the token and the type of the token
-// what are the types of tokens
-// "command" "argument" "pipe" "redirection" "semicolon" "newline"
-// what is the value of a token
-// the string that the token represents
+enum e_token_type {
+	WORD = -1;
+	WHITE_SPACE = ' ';
+	NEW_LINE = '\n';
+	QUOTE = '\'';
+	DOUBLE_QUOTE = '\"';
+	PIPE = '|';
+	ESCAPE = '\\';
+	ENV = '$';
+	REDIRECT_IN = '<';
+	REDIRECT_OUT = '>';
+	HERE_DOC;
+}
 
+t_token*	_lexer(char *input)
+{
+	t_token *head;
+	t_token *current;
+
+	
+}
 
 int main(void) {
 
 	char *input = readline("Input Here: ");
-	t_token *result = lexer(input);
+	t_token *result = _lexer(input);
 
 	return 0;
 }
