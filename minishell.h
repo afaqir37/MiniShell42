@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
+#include "libft/libft.h"
 
 typedef struct s_token {
 	char			*content;
