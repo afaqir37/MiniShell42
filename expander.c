@@ -63,7 +63,7 @@ char    *_expand_word(char *content)
     free(result);
     result = tmp2;
     free(tmp);
-    //printf("%s\n", tmp);
+    free(content);
     return result;
 }
 
