@@ -28,8 +28,8 @@ char    *_expand_word(char *content)
     j = 0;
     k = 0;
     result = ft_calloc(1, 1);
-               
-
+ 
+ echo dfdsf$HOME okno
     while (content[i])
     {
         if (content[i] == '$')
@@ -44,7 +44,7 @@ char    *_expand_word(char *content)
             while (content[i] && !_it_contains(content[i]))
                 i++;
             tmp = ft_substr(content, j + 1, i - j - 1);
-            printf("tmp: %s\n", tmp);
+            //printf("tmp: %s\n", tmp);
             tmp2 = getenv(tmp);
             if (!tmp2)
                 tmp2 = ft_strdup("");
