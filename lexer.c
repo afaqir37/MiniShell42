@@ -7,7 +7,6 @@ t_token *_lexer(char *input)
 {
 	t_token             *head;
 	t_token             *current;
-    enum e_token   type;
     int                 i;
     int                 j;
 
@@ -24,8 +23,7 @@ t_token *_lexer(char *input)
             while(input[i] && !_it_contains(input[i])) {
                 i++;
             }
-            type = WORD;
-            current = _create_token(ft_substr(input, j, i - j), type);
+            current = _create_token(ft_substr(input, j, i - j), WORD);
             _add_token(&head, current);
 
         }
