@@ -31,9 +31,7 @@ char    *_expand_word(char *content)
                
 
     while (content[i])
-    {  
-        printf("%s\n", content);
-        printf("%d\n", i);
+    {
         if (content[i] == '$')
         {
             tmp = ft_substr(content, j, i - j);
@@ -43,30 +41,29 @@ char    *_expand_word(char *content)
             free(tmp);
             j = i;
             i++;
-            while (content[i] && ft_isalnum(content[i]))
+            while (content[i] && !_it_contains(content[i]))
                 i++;
             tmp = ft_substr(content, j + 1, i - j - 1);
+            printf("tmp: %s\n", tmp);
             tmp2 = getenv(tmp);
             if (!tmp2)
                 tmp2 = ft_strdup("");
             tmp3 = ft_strjoin(result, tmp2);
-            printf("%s\n", tmp3);
             free(result);
             result = tmp3;
             free(tmp);
-            free(tmp2);
             j = i;
         }
         if (content[i])
             i++;
       
     }
-            printf("%s\n", tmp3);
     tmp = ft_substr(content, j, i - j);
     tmp2 = ft_strjoin(result, tmp);
     free(result);
     result = tmp2;
     free(tmp);
+    //printf("%s\n", tmp);
     return result;
 }
 
