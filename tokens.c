@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_token*    _create_token(int type, char *value)
+t_token*    _create_token(char *value, enum e_token type)
 {
     t_token *token;
 
@@ -8,7 +8,7 @@ t_token*    _create_token(int type, char *value)
     if (!token)
         return (NULL);
     token->type = type;
-    token->content = ft_strdup(value);
+    token->content = value;
     token->next = NULL;
     return (token);
 }

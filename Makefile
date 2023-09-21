@@ -1,8 +1,8 @@
-CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = lexer.c readline.c
+SRC = lexer.c readline.c utils_lexer.c tokens.c
 OBJ = $(SRC:.c=.o)
-LIBFT = libft/libft.a
+LIBFT = libft.a
 RM = rm -rf
 
 all: $(LIBFT) $(NAME)
@@ -11,7 +11,9 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -lreadline libft/libft.a -o $(NAME)
+
+re: fclean all
 
 clean:
 	$(RM) $(OBJ)

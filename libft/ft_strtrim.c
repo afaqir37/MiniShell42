@@ -43,7 +43,7 @@ static size_t	check_backward(char const *s1, char const *set)
 {
 	size_t	k;
 	size_t	j;
-	size_t	len;
+	int		len;
 
 	k = 0;
 	j = ft_strlen(set);
@@ -67,7 +67,6 @@ static size_t	check_backward(char const *s1, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t			i;
-	size_t			j;
 	size_t			len;
 	char			*p;
 
@@ -77,7 +76,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = ft_strlen(s1);
 	if (!set)
 		return (ft_strdup(s1));
-	j = ft_strlen(set);
 	if (!ft_strlen(s1))
 		return (ft_strdup(""));
 	i = check_forward(s1, set);

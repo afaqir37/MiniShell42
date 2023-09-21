@@ -68,11 +68,7 @@ static char	*print_neg(int n, int d)
 char	*ft_itoa(int n)
 {
 	int		d;
-	long	g;
-	size_t	i;
 
-	g = n;
-	i = 0;
 	d = checkdigit(n);
 	if (n >= 0)
 		return (print_pos(n, d));

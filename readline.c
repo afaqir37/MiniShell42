@@ -1,7 +1,14 @@
 #include "minishell.h"
 
 
-
+void _print_token(t_token *token)
+{
+	while (token)
+	{
+		printf(" ----- \"%s\"\n", token->content);
+		token = token->next;
+	}
+}
 
 int main(void) {
 	while (1)
@@ -10,7 +17,8 @@ int main(void) {
 		if (input && *input)
 			add_history(input);
 		t_token *result = _lexer(input);
-		printf("the user input is: %s\n", input);
+		_print_token(result);
+		//printf("the user input is: %s\n", input);
 		free(input);
 	
 
