@@ -5,3 +5,4 @@
 @afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   "
 @afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   k"
 @afaqir37 ➜ /workspaces/MiniShell42 (main) $ echo dsfsfl   k | echo mzmz^C
+ok
