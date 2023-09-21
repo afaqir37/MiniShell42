@@ -28,8 +28,12 @@ char    *_expand_word(char *content)
     j = 0;
     k = 0;
     result = ft_calloc(1, 1);
+               
+
     while (content[i])
-    {
+    {  
+        printf("%s\n", content);
+        printf("%d\n", i);
         if (content[i] == '$')
         {
             tmp = ft_substr(content, j, i - j);
@@ -42,18 +46,22 @@ char    *_expand_word(char *content)
             while (content[i] && ft_isalnum(content[i]))
                 i++;
             tmp = ft_substr(content, j + 1, i - j - 1);
-            tmp2 = ft_getenv(tmp);
+            tmp2 = getenv(tmp);
             if (!tmp2)
                 tmp2 = ft_strdup("");
             tmp3 = ft_strjoin(result, tmp2);
+            printf("%s\n", tmp3);
             free(result);
             result = tmp3;
             free(tmp);
             free(tmp2);
             j = i;
         }
-        i++;
+        if (content[i])
+            i++;
+      
     }
+            printf("%s\n", tmp3);
     tmp = ft_substr(content, j, i - j);
     tmp2 = ft_strjoin(result, tmp);
     free(result);
@@ -69,8 +77,9 @@ void    _expander(t_token **result)
     head = *result;
     while (head)
     {
-        if (_contains_dollar(head->content) && (head->state == GENERAL || head->state = DQUOTE))
+        if (_contains_dollar(head->content) && (head->state == GENERAL || head->state == IN_DQUOTE))
         {
+            
             head->content = _expand_word(head->content);
         }
         head = head->next;
