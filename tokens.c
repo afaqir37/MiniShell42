@@ -1,14 +1,15 @@
 #include "minishell.h"
 
-t_token*    _create_token(char *value, enum e_token type)
+t_token*    _create_token(char *value, enum e_token type, enum e_state state)
 {
     t_token *token;
 
     token = malloc(sizeof(t_token));
     if (!token)
         return (NULL);
-    token->type = type;
     token->content = value;
+    token->type = type;
+    token->state = state;
     token->next = NULL;
     return (token);
 }
