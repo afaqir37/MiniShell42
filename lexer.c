@@ -14,6 +14,7 @@ t_token *_lexer(char *input)
     i = 0;
     j = 0;
     head = NULL;
+    char *s;
     while(input[i]) {
         while(input[i] && (input[i] == ' ' || input[i] == '\t'))
             i++;
@@ -21,8 +22,32 @@ t_token *_lexer(char *input)
             break;
         if (!_it_contains(input[i])) {
             j = i;
+            // i want to tokenize sh"$PATH" as one token
             while(input[i] && !_it_contains(input[i])) {
+                if (input[i] == '\"' || input[i] == '\'') {
+                    s = ft_substr(input, j, i - j);
+                    i++;
+                    j = i;
+                    while(input[i] && input[i] != '\"')
+                        i++;
+                    if (!input[i]) {
+                        printf("Error: unclosed double quote\n");
+                        return (NULL);
+                    }
+                else if (input[i] == '\"' && i != j) {
+                    current = _create_token(ft_substr(input, j, i - j), WORD, IN_DQUOTE);
+                    _add_token(&head, current);
+                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
+                // _add_token(&head, current);
+                    i++;
+                }
+                else {
+                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
+                // _add_token(&head, current);
                 i++;
+            }
+                } else
+                    i++;
             }
             current = _create_token(ft_substr(input, j, i - j), WORD, GENERAL);
             _add_token(&head, current);
@@ -60,8 +85,8 @@ t_token *_lexer(char *input)
             }
         }
         else if (input[i] == '\"') {
-            current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
-            _add_token(&head, current);
+            // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
+            // _add_token(&head, current);
             i++;
             j = i;
             while(input[i] && input[i] != '\"')
@@ -73,20 +98,20 @@ t_token *_lexer(char *input)
             else if (input[i] == '\"' && i != j) {
                 current = _create_token(ft_substr(input, j, i - j), WORD, IN_DQUOTE);
                 _add_token(&head, current);
-                current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
-                _add_token(&head, current);
+                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
+                // _add_token(&head, current);
                 i++;
             }
             else {
-                current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
-                _add_token(&head, current);
+                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
+                // _add_token(&head, current);
                 i++;
             }
 
         }
         else if (input[i] == '\'') {
-            current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
-            _add_token(&head, current);
+            // current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
+            // _add_token(&head, current);
             i++;
             j = i;
             while(input[i] && input[i] != '\'')
@@ -99,13 +124,13 @@ t_token *_lexer(char *input)
             else if (input[i] == '\'' && i != j) {
                 current = _create_token(ft_substr(input, j, i - j), WORD, IN_QUOTE);
                 _add_token(&head, current);
-                current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
-                _add_token(&head, current);
+                // current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
+                // _add_token(&head, current);
                 i++;
             }
             else {
-                current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
-                _add_token(&head, current);
+                // current = _create_token(ft_substr(input, i, 1), QUOTE, GENERAL);
+                // _add_token(&head, current);
                 i++;
             }
         }
