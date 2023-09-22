@@ -29,7 +29,7 @@ char    *_expand_word(char *content)
     k = 0;
     result = ft_calloc(1, 1);
  
- echo dfdsf$HOME okno
+
     while (content[i])
     {
         if (content[i] == '$')
@@ -76,7 +76,8 @@ void    _expander(t_token **result)
     {
         if (_contains_dollar(head->content) && (head->state == GENERAL || head->state == IN_DQUOTE))
         {
-            
+            free(head->before_expanded);
+            head->before_expanded = ft_strdup(head->content); // save the original content
             head->content = _expand_word(head->content);
         }
         head = head->next;

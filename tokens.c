@@ -10,6 +10,7 @@ t_token*    _create_token(char *value, enum e_token type, enum e_state state)
     token->content = value;
     token->type = type;
     token->state = state;
+    token->before_expanded = ft_strdup("");
     token->next = NULL;
     return (token);
 }
