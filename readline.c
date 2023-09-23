@@ -5,7 +5,7 @@ void _print_token(t_token *token)
 {
 	while (token)
 	{
-		printf(" ----- %s<   %s\n", token->content, token->before_expanded);
+		printf(" ----- %s<   %d\n", token->content, token->space_check);
 		token = token->next;
 	}
 }

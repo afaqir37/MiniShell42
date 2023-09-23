@@ -65,6 +65,17 @@ void    _expander(t_token **result)
     head = *result;
     while (head)
     {
+        if (head->type == HERE_DOC)
+        {
+            head = head->next->next;
+            while (head && head->space_check == 0)
+            {
+                head = head->next;
+            }
+            if (head)
+                head = head->next;
+            continue;
+        }
         if (_contains_dollar(head->content) && (head->state == GENERAL || head->state == IN_DQUOTE))
         {
             free(head->before_expanded);
