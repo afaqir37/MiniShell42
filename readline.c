@@ -5,7 +5,7 @@ void _print_token(t_token *token)
 {
 	while (token)
 	{
-		printf(" ----- %s\n", token->content);
+		printf(" ----- %s<   %d\n", token->content, token->space_check);
 		token = token->next;
 	}
 }
@@ -17,7 +17,7 @@ int main(void) {
 		if (input && *input)
 			add_history(input);
 		t_token *result = _lexer(input);
-		_expander(&result);
+		//_expander(&result);
 		_print_token(result);
 		//printf("the user input is: %s\n", input);
 		free(input);
