@@ -10,12 +10,15 @@ t_token *_lexer(char *input)
     enum e_state        state;
     int                 i;
     int                 j;
+    int                 token_created;
 
     i = 0;
     j = 0;
+    token_created = 0;
     head = NULL;
     char *s;
     while(input[i]) {
+        token_created = 0;
         while(input[i] && (input[i] == ' ' || input[i] == '\t'))
             i++;
         if (!input[i])
@@ -24,7 +27,8 @@ t_token *_lexer(char *input)
             j = i;
             // i want to tokenize sh"$PATH" as one token
             while(input[i] && !_it_contains(input[i])) {
-                if (input[i] == '\"' || input[i] == '\'') {
+                if (input[i] == '\"') {
+                    token_created = 1;
                     s = ft_substr(input, j, i - j);
                     i++;
                     j = i;
@@ -35,22 +39,43 @@ t_token *_lexer(char *input)
                         return (NULL);
                     }
                 else if (input[i] == '\"' && i != j) {
-                    current = _create_token(ft_substr(input, j, i - j), WORD, IN_DQUOTE);
+                    current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_DQUOTE);
                     _add_token(&head, current);
-                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
-                // _add_token(&head, current);
                     i++;
                 }
-                else {
-                // current = _create_token(ft_substr(input, i, 1), DOUBLE_QUOTE, GENERAL);
-                // _add_token(&head, current);
-                i++;
-            }
-                } else
+                else 
+                    i++;
+            
+                }
+                else if (input[i] == '\'') {
+                    token_created = 1;
+                    s = ft_substr(input, j, i - j);
+                    i++;
+                    j = i;
+                    while(input[i] && input[i] != '\'')
+                        i++;
+                    if (!input[i])
+                    {
+                        printf("Error: unclosed single quote\n");
+                        return (NULL);
+                    }
+                    else if (input[i] == '\'' && i != j) {
+                        current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_QUOTE);
+                        _add_token(&head, current);
+                        i++;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+                else
                     i++;
             }
-            current = _create_token(ft_substr(input, j, i - j), WORD, GENERAL);
-            _add_token(&head, current);
+            if (!token_created) {
+                current = _create_token(ft_substr(input, j, i - j), WORD, GENERAL);
+                _add_token(&head, current);                
+            }
+
 
         }
         else if (input[i] == '|') {
