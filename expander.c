@@ -20,6 +20,7 @@ char    *_expand_word(char *content)
     char    *tmp;
     char    *tmp2;
     char    *tmp3;
+    char    *save;
     int     i;
     int     j;
     int     k;
@@ -27,44 +28,34 @@ char    *_expand_word(char *content)
     i = 0;
     j = 0;
     k = 0;
-    result = ft_calloc(1, 1);
- 
-
+    save = ft_strdup("");
     while (content[i])
     {
         if (content[i] == '$')
         {
-            tmp = ft_substr(content, j, i - j);
-            tmp2 = ft_strjoin(result, tmp);
-            free(result);
-            result = tmp2;
-            free(tmp);
-            j = i;
             i++;
-            while (content[i] && !_it_contains(content[i]))
+            while (content[i] && !ft_strchr("+*-?<>{}()#%@\"'$&|;,/\t ", content[i]))
                 i++;
             tmp = ft_substr(content, j + 1, i - j - 1);
             //printf("tmp: %s\n", tmp);
             tmp2 = getenv(tmp);
             if (!tmp2)
                 tmp2 = ft_strdup("");
-            tmp3 = ft_strjoin(result, tmp2);
-            free(result);
-            result = tmp3;
+            save = ft_strjoin(save, tmp2);
             free(tmp);
             j = i;
         }
-        if (content[i])
+        if (content[i] && content[i] != '$')
+        {
+            
+            save = _append(save, content[i]);
             i++;
+            j = i;
+        }
       
     }
-    tmp = ft_substr(content, j, i - j);
-    tmp2 = ft_strjoin(result, tmp);
-    free(result);
-    result = tmp2;
-    free(tmp);
-    free(content);
-    return result;
+
+    return save;
 }
 
 void    _expander(t_token **result)

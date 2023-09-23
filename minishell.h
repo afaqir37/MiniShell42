@@ -46,8 +46,10 @@ typedef struct s_token {
 t_token*	_lexer(char *input);
 t_token*    _create_token(char *value, enum e_token type, enum e_state state, int check_space);
 void		_add_token(t_token **head, t_token *new);
+void		_update_tokens(t_token **result);
 int			_it_contains(int c);
 void		_expander(t_token **head);
 char*		_append(char *str, char c);
+
 
 #endif

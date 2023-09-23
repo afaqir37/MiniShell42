@@ -66,7 +66,7 @@ t_token *_lexer(char *input)
                         return (NULL);
                     }
                     else if (input[i] == '\'' && i != j) {
-                        if (input[i+1] && ft_strchr(" \t", input[i+1]))
+                        if ((input[i+1] && ft_strchr(" \t", input[i+1])) || !input[i+1])
                             current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_QUOTE, 1);
                         else
                             current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_QUOTE, 0);
@@ -78,7 +78,6 @@ t_token *_lexer(char *input)
                 else {
                     //printf("input[i] = %c\n", input[i]);
                     s = _append(s, input[i]);
-                    printf("s = %s\n", s);
                     i++;
                     if (_it_contains(input[i]) || !input[i] || input[i] == '\"' || input[i] == '\'') {
                         token_created = 1;
@@ -87,7 +86,6 @@ t_token *_lexer(char *input)
                         else
                             current = _create_token(s, WORD, GENERAL, 1);
                         _add_token(&head, current);
-                        printf("--------------\n");
                         s = ft_strdup("");
                     }
                 }
