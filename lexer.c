@@ -41,7 +41,7 @@ t_token *_lexer(char *input)
                         return (NULL);
                     }
                 else if (input[i] == '\"') {
-                    if ((input[i+1] && ft_strchr(" \t", input[i+1])) || !input[i+1])
+                    if ((input[i+1] && _it_contains(input[i+1])) || !input[i+1])
                         current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_DQUOTE, 1);
                     else
                         current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_DQUOTE, 0);
@@ -66,7 +66,7 @@ t_token *_lexer(char *input)
                         return (NULL);
                     }
                     else if (input[i] == '\'' && i != j) {
-                        if ((input[i+1] && ft_strchr(" \t", input[i+1])) || !input[i+1])
+                        if ((input[i+1] && _it_contains(input[i+1])) || !input[i+1])
                             current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_QUOTE, 1);
                         else
                             current = _create_token(ft_strjoin(s, ft_substr(input, j, i - j)), WORD, IN_QUOTE, 0);
@@ -86,6 +86,7 @@ t_token *_lexer(char *input)
                         else
                             current = _create_token(s, WORD, GENERAL, 1);
                         _add_token(&head, current);
+                        //free(s);
                         s = ft_strdup("");
                     }
                 }

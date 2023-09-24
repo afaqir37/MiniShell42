@@ -31,5 +31,5 @@ expand null or empty string or ... and > (expanded_value) + open fails -> ambigu
 
 
 
-
+echo <<$USER"$HOME"<<$GOROOT
 
