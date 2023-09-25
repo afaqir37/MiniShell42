@@ -13,6 +13,8 @@ void    _update_tokens(t_token** result)
             current->content = ft_strjoin(current->content, current->next->content);
             current->before_expanded = _append(current->before_expanded, ' ');
             current->before_expanded = ft_strjoin(current->before_expanded, current->next->before_expanded);
+            if (current->state + current->next->state != 0)
+                current->state = QUOTED;
             
             tmp = current->next;
             if (current->next && current->next->space_check == 1)

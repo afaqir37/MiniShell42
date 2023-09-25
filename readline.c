@@ -17,6 +17,21 @@ void _print_token(t_token *token)
 	}
 }
 
+void	_print_commands(t_commands *commands)
+{
+	int i = 0;
+	printf("$-----------------commands---------------------$\n");
+	while (commands)
+	{
+		_print_array(commands->cmd);
+		printf("in_file: %d\n", commands->in_file);
+		printf("out_file: %d\n", commands->out_file);
+		printf("-----------------------------------------------\n");
+		commands = commands->next;
+		i++;
+	}
+}
+
 int main(void) {
 	while (1)
 	{
@@ -30,8 +45,9 @@ int main(void) {
 			continue;
 		_expander(&result);
 		_update_tokens(&result);
-		_print_token(result);
-		//printf("the user input is: %s\n", input);
+		//_print_token(result);
+		 t_commands *commands = _parser(&result);
+		 _print_commands(commands);
 		free(input);
 	
 

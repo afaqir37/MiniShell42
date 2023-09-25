@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
@@ -16,7 +18,8 @@
 enum e_state {
 	GENERAL,
 	IN_QUOTE,
-	IN_DQUOTE
+	IN_DQUOTE,
+	QUOTED
 };
 
 enum e_token{
@@ -43,6 +46,17 @@ typedef struct s_token {
 	struct s_token	*next;
 } t_token;
 
+typedef struct s_commands {
+	int					in_file;
+	int					out_file;
+	char				**cmd;
+	struct s_commands	*next;
+} t_commands;
+
+
+//	-----------------------    PARSING    ------------------------
+
+
 t_token*	_lexer(char *input);
 t_token*    _create_token(char *value, enum e_token type, enum e_state state, int check_space);
 void		_add_token(t_token **head, t_token *new);
@@ -51,6 +65,13 @@ int			_it_contains(int c);
 void		_expander(t_token **head);
 char*		_append(char *str, char c);
 int			_syntax_check(t_token** result);
+t_commands  *_parser(t_token **result);
+t_commands  *_create_command(char **commands, int in_file, int out_file);
+void		_add_command(t_commands **head, t_commands *new);
+void		_print_array(char **array);
+
+
+//	-----------------------    PARSING    ------------------------
 
 
 #endif
