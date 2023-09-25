@@ -72,7 +72,7 @@ void    _expander(t_token **result)
             {
                 head = head->next;
             }
-            if (head)
+            if (head && head->type != HERE_DOC)
                 head = head->next;
             continue;
         }

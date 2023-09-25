@@ -26,6 +26,8 @@ int main(void) {
 		t_token *result = _lexer(input);
 		if (!result)
 			continue;
+		if(_syntax_check(&result))
+			continue;
 		_expander(&result);
 		_update_tokens(&result);
 		_print_token(result);

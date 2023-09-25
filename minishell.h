@@ -50,6 +50,7 @@ void		_update_tokens(t_token **result);
 int			_it_contains(int c);
 void		_expander(t_token **head);
 char*		_append(char *str, char c);
+int			_syntax_check(t_token** result);
 
 
 #endif
