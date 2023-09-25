@@ -1,7 +1,5 @@
-#include "minishell.h"
-//  Shunting yard algorithm
+#include "../minishell.h"
 
-// echo"$USER | "$$'$PATH'>file|cat <<limiter>file|cat<file>>out_file
 
 t_token *_lexer(char *input)
 {

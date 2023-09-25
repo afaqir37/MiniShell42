@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 int _contains_dollar(char *str)
 {

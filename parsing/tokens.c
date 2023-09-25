@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 t_token*    _create_token(char *value, enum e_token type, enum e_state state, int space_check)
 {

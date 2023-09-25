@@ -1,8 +1,8 @@
 #CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = lexer.c readline.c utils_lexer.c tokens.c \
-		expander.c update_tokens.c syntax_checker.c \
-		parser.c commands.c
+SRC = parsing/lexer.c readline.c parsing/utils_lexer.c parsing/tokens.c \
+		parsing/expander.c parsing/update_tokens.c parsing/syntax_checker.c \
+		parsing/parser.c parsing/commands.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft.a
 RM = rm -rf

@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 t_commands  *_create_command(char **commands, int in_file, int out_file)
 {
