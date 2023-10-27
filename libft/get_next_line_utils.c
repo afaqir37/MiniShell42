@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 00:00:38 by afaqir            #+#    #+#             */
-/*   Updated: 2022/11/09 00:02:23 by afaqir           ###   ########.fr       */
+/*   Created: 2023/03/15 01:54:24 by afaqir            #+#    #+#             */
+/*   Updated: 2023/10/14 22:48:41 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s && s[i])
+	if (!str)
+		return (0);
+	while (str[i])
 		i++;
 	return (i);
+}
+
+int	ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }

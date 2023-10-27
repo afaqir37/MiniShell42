@@ -1,9 +1,9 @@
  @afaqir37 ➜ /workspaces/MiniShell42 (main) $ 
-@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=""
-@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=" "
-@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=" l"
-@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   "
-@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   k"
+@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=""      -> ambiguous redirection
+@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=" "     -> ambiguous redirection
+@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a=" l"	  -> no such file
+@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   "  -> no such file
+@afaqir37 ➜ /workspaces/MiniShell42 (main) $ export a="l   k" -> ambiguous redirection
 @afaqir37 ➜ /workspaces/MiniShell42 (main) $ echo dsfsfl   k | echo mzmz^C
 ambiguous redirection
 
@@ -35,3 +35,69 @@ echo <<$USER"$HOME"<<$GOROOT
 
 echo ${HOME} should expand
 echo "$USER | " $$'$PATH' ($$)
+
+commit 1
+commit 2
+commit 3
+
+HEAD detached
+HEAD attached now :)
+
+echo $555 -> 55
+echo $@ -> '\n'
+
+
+memory leaks after parsing error
+<< delim : memory leak
+
+ echo " | echo hello
+ echo "" ""''koko
+
+
+ to check after execution is done:
+ echo bonjour |;
+
+ echo -nnnnnnnn fyytrf-nnnnn ygtfh
+
+ echo rtfyg-n 
+
+------
+leak = ft_strtrim(_expand_word()) // fixed
+cat << ok | cat << ok << bx 
+
+whoami | grep $USER > tmp/file
+
+pwd oi
+export hELLO-=123
+export = -> wrong error message
+
+
+echo <123 <345 hi
+ls > file10 > barca > file4
+whoami | grep $USER > tmp/file | echo hello
+
+Makefile/ -> no such file or directory
+
+pwd | ls > c | pwd | cat < c
+
+echo $4444 -> 444
+echo $4HOME -> HOME
+
+17 here_document count exceeded
+
+echo hello | ls > b | pwd | cat < b
+
+------
+exit status need to be updated after a successful command
+
+-----
+check ambiguous redirection for append >>
+
+------------
+
+cat < barca | wc | cat | cat | ls >> barca | wc | cat
+
+=====
+i should close a fd after executing command
+
+unset $PATH + wc ok -> crash
